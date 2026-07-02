@@ -1,0 +1,17 @@
+{
+  "selected_model": "calibrated_random_forest",
+  "accuracy": 1.0,
+  "top3_accuracy": 1.0,
+  "rows": 722,
+  "diseases": 6,
+  "original_symptoms": 135,
+  "selected_symptoms": 135,
+  "kept_diseases": [
+    "Dengue",
+    "Common Cold",
+    "Pneumonia",
+    "Migraine",
+    "Heart attack",
+    "Diabetes"
+  ]
+}

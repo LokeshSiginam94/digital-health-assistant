@@ -1,0 +1,28 @@
+# Python (backend)
+backend/venv/
+backend/__pycache__/
+backend/instance/
+*.pyc
+
+# Model artifacts (keep them local; avoid huge binaries in repo)
+backend/model/*.pkl
+
+# Environment & secrets
+backend/.env
+.env
+
+# Node (frontend)
+frontend/node_modules/
+node_modules/
+dist/
+build/
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
