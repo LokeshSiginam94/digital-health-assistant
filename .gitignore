@@ -4,8 +4,15 @@ backend/__pycache__/
 backend/instance/
 *.pyc
 
-# Model artifacts (keep them local; avoid huge binaries in repo)
+# Model artifacts
 backend/model/*.pkl
+
+# Allow required ML model files
+!backend/model/disease_model.pkl
+!backend/model/encoders.pkl
+!backend/model/feature_selector.pkl
+!backend/model/symptom_columns.pkl
+!backend/model/disease_classes.pkl
 
 # Environment & secrets
 backend/.env
