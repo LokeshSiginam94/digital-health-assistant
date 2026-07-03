@@ -74,7 +74,6 @@ except Exception as e:
     auth_db_error = str(e)
     print("MongoDB connection failed:", auth_db_error)
 
-# Model files
 if not MODEL_PATH.exists():
     raise FileNotFoundError(f"Missing model file: {MODEL_PATH}")
 if not SYMPTOM_COLUMNS_PATH.exists():
