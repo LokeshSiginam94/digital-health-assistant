@@ -474,7 +474,7 @@ def build_feature_dataframe(
     df = pd.DataFrame([row], columns=symptom_columns).astype("int8")
     return df, matched, unmatched, canonical
 
-# Optional: extended feature vector using encoders (if you later add severity, etc.)
+
 def build_feature_vector_with_encoders(
     selected_symptoms: List[str],
     severity: str = "moderate",
@@ -1134,10 +1134,9 @@ def predict():
         ), 500
 
 
-import os
-
 if __name__ == "__main__":
     app.run(
         debug=False,
         host="0.0.0.0",
         port=int(os.environ.get("PORT", 5000))
+    )
