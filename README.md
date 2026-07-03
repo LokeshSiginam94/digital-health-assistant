@@ -55,7 +55,7 @@
 ## 📁 Project Structure
 
 ```bash
-Smart-Preventive-Healthcare-System-AI/
+digital-health-assistant/
 │
 ├── backend/
 │   ├── app.py
@@ -76,8 +76,6 @@ Smart-Preventive-Healthcare-System-AI/
 └── .gitignore
 ```
 
-> The exact contents of `data/` and `model/` may vary depending on the training artifacts and dataset files present in your local setup.
-
 ---
 
 ## ⚙️ Prerequisites
@@ -92,12 +90,28 @@ Before running the project, install the following:
 
 ---
 
-## 📥 Clone Repository
+## 📥 Download / Clone Project
+
+### Option 1: Clone using Git (recommended)
+
+Open Command Prompt or PowerShell in a folder where you have write permission, such as **Desktop** or **Documents**.
 
 ```bash
+cd %USERPROFILE%\Desktop
 git clone https://github.com/LokeshSiginam94/digital-health-assistant.git
 cd digital-health-assistant
 ```
+
+### Option 2: Download ZIP from GitHub
+
+1. Open the repository in your browser:  
+   `https://github.com/LokeshSiginam94/digital-health-assistant`
+2. Click the green **Code** button.
+3. Click **Download ZIP**.
+4. Extract the ZIP file.
+5. Open the extracted project folder in VS Code or terminal.
+
+> If `git clone` shows `Permission denied`, move to a writable location like Desktop and try again.
 
 ---
 
