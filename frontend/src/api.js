@@ -1,4 +1,8 @@
-const API_BASE_URL = "http://127.0.0.1:5000";
+// Use the Vercel environment variable if available,
+// otherwise fall back to your Render backend URL.
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://digital-health-backend-z1jf.onrender.com";
 
 async function handleResponse(response) {
   const data = await response.json().catch(() => ({}));
@@ -10,7 +14,12 @@ async function handleResponse(response) {
   return data;
 }
 
-export async function registerUser({ full_name, email, password, confirm_password }) {
+export async function registerUser({
+  full_name,
+  email,
+  password,
+  confirm_password,
+}) {
   const response = await fetch(`${API_BASE_URL}/register`, {
     method: "POST",
     headers: {
