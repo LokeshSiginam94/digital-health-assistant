@@ -2,7 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
-const API_BASE = "http://127.0.0.1:5000";
+const API_BASE =
+  import.meta.env.VITE_API_URL ||
+  "https://digital-health-backend-z1jf.onrender.com";
 const MIN_SYMPTOMS_FOR_ANALYSIS = 3;
 const MAX_AGE = 100;
 const LOW_CONFIDENCE_THRESHOLD = 20;
