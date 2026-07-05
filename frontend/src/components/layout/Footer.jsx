@@ -9,7 +9,6 @@ const quickLinks = [
 
 const projectLinks = [
   { label: 'About Project', to: '/about' },
-  { label: 'Team', to: '/team' },
 ]
 
 export default function Footer() {
@@ -57,8 +56,9 @@ export default function Footer() {
                 maxWidth: '420px',
               }}
             >
-              An AI-assisted academic healthcare project focused on symptom awareness,
-              preventive guidance, recovery support, and responsible early decision support.
+              An AI-assisted academic healthcare project focused on symptom
+              awareness, preventive guidance, recovery support, and responsible
+              early decision support.
             </p>
           </div>
 
