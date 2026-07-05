@@ -1,252 +1,151 @@
-import { useMemo, useState } from 'react'
 import Navbar from '../components/layout/Navbar'
 import Footer from '../components/layout/Footer'
 
-const backendTeam = [
+const teamSections = [
   {
-    rollNo: '24X41A42I7',
-    name: 'Balasai',
-    role: 'Team Lead · Backend & ML Integration Lead',
-    badge: 'Team Lead',
-    contributions: [
-      'Led backend module planning, task coordination, and final integration of the project workflow.',
-      'Designed the Flask API structure for symptom prediction and response handling between frontend and backend.',
-      'Coordinated machine learning integration, including model loading, prediction flow, and output formatting.',
-      'Supervised dataset preparation, feature selection planning, and alignment between symptoms, disease labels, and API responses.',
-      'Managed testing support for prediction outputs, confidence messages, and final system stability.',
+    id: 'backend',
+    title: 'Backend Team',
+    accent: 'cyan',
+    summary:
+      'Handled the server-side workflow of the Smart Preventive Healthcare System, including API integration, symptom input processing, prediction flow, and backend stability.',
+    responsibilities: [
+      'Designed and supported the backend structure for processing symptom-based requests.',
+      'Connected the trained prediction workflow with the web application through Flask APIs.',
+      'Managed request and response handling between frontend inputs and backend outputs.',
+      'Worked on symptom normalization, structured response formatting, and prediction delivery.',
+      'Supported model-serving flow, backend testing, and output consistency checks.',
+      'Contributed to dataset handling, training support, and overall backend integration.',
     ],
-    stack: [
+    tools: [
       'Python',
       'Flask',
-      'REST API integration',
-      'Machine learning pipeline coordination',
-      'Model-response mapping',
+      'REST API',
+      'JSON Handling',
+      'Prediction Flow',
+      'Data Processing',
+      'Model Integration',
     ],
   },
   {
-    rollNo: '24X41A42I8',
-    name: 'Venkatesh',
-    role: 'Backend Developer · Data Processing Support',
-    contributions: [
-      'Supported backend development for request handling, JSON processing, and symptom input validation.',
-      'Worked on data cleaning support, symptom normalization logic, and backend-friendly input formatting.',
-      'Assisted with API testing using sample symptom combinations and response verification.',
-      'Helped organize dataset fields and check whether backend outputs matched expected prediction structure.',
-      'Contributed to debugging model-serving issues and backend execution flow.',
+    id: 'frontend',
+    title: 'Frontend Team',
+    accent: 'fuchsia',
+    summary:
+      'Handled the user-facing side of the project, including layout design, page structure, responsive styling, navigation flow, and content presentation.',
+    responsibilities: [
+      'Built the visual structure of the website using reusable React components.',
+      'Created responsive page layouts for desktop and mobile viewing.',
+      'Implemented routing between core pages such as home, features, about, team, and symptom checker.',
+      'Worked on styling for sections, cards, buttons, footer areas, and content blocks.',
+      'Improved readability, spacing consistency, and user experience across the platform.',
+      'Aligned the interface design with the academic preventive healthcare theme of the project.',
     ],
-    stack: [
-      'Python',
-      'Flask',
-      'Data preprocessing',
-      'Validation logic',
-      'API testing',
-    ],
-  },
-  {
-    rollNo: '24X41A42J2',
-    name: 'Jaya Shankar',
-    role: 'Backend Developer · Model Training & Evaluation Support',
-    contributions: [
-      'Assisted in machine learning experimentation for disease prediction and symptom-to-disease mapping.',
-      'Worked on training workflow support, dataset understanding, and model behavior checking.',
-      'Helped review algorithm suitability for symptom classification and comparative output analysis.',
-      'Supported prediction testing for common symptom patterns and result consistency review.',
-      'Contributed to backend documentation related to training, inference, and module behavior.',
-    ],
-    stack: [
-      'Python',
-      'Dataset analysis',
-      'Training support',
-      'Prediction testing',
-      'Model evaluation assistance',
-    ],
-  },
-]
-
-const frontendTeam = [
-  {
-    rollNo: '24X41A42I9',
-    name: 'Muntaz',
-    role: 'Frontend Developer · UI Structure Lead',
-    contributions: [
-      'Developed the main page layouts and user interface structure for core website sections.',
-      'Worked on homepage composition including hero sections, content grouping, and visual hierarchy.',
-      'Implemented navigation flow, reusable page structure, and consistent section spacing across the site.',
-      'Supported responsive layout improvements for desktop and mobile viewing.',
-      'Helped align frontend presentation with the preventive healthcare theme of the project.',
-    ],
-    stack: [
+    tools: [
       'React',
-      'JSX',
-      'Tailwind CSS',
-      'Responsive UI layout',
-      'Component structuring',
-    ],
-  },
-  {
-    rollNo: '24X41A42J0',
-    name: 'Shabnum',
-    role: 'Frontend Developer · Styling & Content Integration',
-    contributions: [
-      'Worked on visual styling for cards, sections, footer, buttons, and content presentation.',
-      'Integrated health-related content into frontend components in a clean and readable way.',
-      'Supported page consistency for colors, spacing, fonts, and section-level design elements.',
-      'Helped implement informative content blocks such as features, about content, and project messaging.',
-      'Contributed to improving user readability and polished visual presentation.',
-    ],
-    stack: [
-      'React',
-      'Tailwind CSS',
-      'Content-driven UI',
-      'Component styling',
-      'Page consistency improvements',
-    ],
-  },
-  {
-    rollNo: '24X41A42J1',
-    name: 'Lokesh',
-    role: 'Frontend Developer · Routing & Interaction Support',
-    contributions: [
-      'Worked on page routing, internal navigation paths, and frontend integration across pages.',
-      'Supported linking of homepage, about page, team page, feature sections, and symptom-check workflows.',
-      'Helped improve interactive behavior for buttons, navigation items, and section transitions.',
-      'Assisted with final frontend testing to ensure page flow and route structure worked correctly.',
-      'Contributed to overall user experience refinement and project presentation readiness.',
-    ],
-    stack: [
       'React Router',
-      'React',
-      'Navigation integration',
-      'Interaction flow',
-      'Frontend testing',
+      'Tailwind CSS',
+      'Responsive Design',
+      'Component Structure',
+      'UI Styling',
+      'Navigation Flow',
     ],
   },
 ]
 
 const projectDetails = [
   {
-    title: 'Frontend Frameworks',
+    title: 'Project Architecture',
     points: [
-      'React was used to build reusable page and section components.',
-      'React Router was used for navigation across homepage, features, about, and team pages.',
-      'Tailwind CSS was used for layout, spacing, colors, and responsive styling.',
+      'The project was organized into two major implementation layers: frontend and backend.',
+      'The frontend focused on user interaction, layout, routing, and display structure.',
+      'The backend focused on symptom processing, prediction workflow, and response generation.',
     ],
   },
   {
-    title: 'Backend Frameworks',
+    title: 'Frontend Implementation',
     points: [
-      'Flask was used to expose prediction endpoints and connect the trained model to the frontend.',
-      'REST-style JSON request and response handling was used for symptom submission and result delivery.',
-      'Backend logic was organized to support prediction output, confidence notes, and symptom selection mapping.',
+      'React was used to create reusable components and structured page sections.',
+      'React Router supported movement across the main project pages.',
+      'Tailwind CSS was used for spacing, colors, responsiveness, and visual consistency.',
     ],
   },
   {
-    title: 'Datasets and Inputs',
+    title: 'Backend Implementation',
     points: [
-      'The system used a symptom-and-disease dataset for model training and prediction mapping.',
-      'Symptom fields were processed into model-readable inputs before prediction.',
-      'Input symptom names were normalized to match the trained symptom column structure.',
+      'Flask was used to expose backend endpoints and connect the prediction flow to the web interface.',
+      'Structured request-response handling supported symptom submission and result delivery.',
+      'Backend logic was aligned to return readable outputs for the user interface.',
     ],
   },
   {
-    title: 'Algorithms and Training',
+    title: 'Prediction Workflow',
     points: [
-      'The project used a machine learning disease-prediction approach based on symptom classification.',
-      'Training involved preparing symptom vectors, mapping prognosis labels, and testing prediction results.',
-      'Evaluation focused on whether the model returned relevant disease suggestions and usable support messages.',
+      'The system processed symptom-related inputs and converted them into model-ready data.',
+      'Prediction results were mapped into usable healthcare support outputs.',
+      'Testing focused on result consistency, response quality, and smooth integration with the frontend.',
     ],
   },
 ]
 
-function MemberCard({ member, accent = 'cyan' }) {
-  const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 })
-  const [isHovered, setIsHovered] = useState(false)
-
-  const accentClasses = useMemo(() => {
-    if (accent === 'fuchsia') {
-      return {
-        glow: 'rgba(217, 70, 239, 0.18)',
-        border: 'border-fuchsia-400/20',
-        badge: 'border-fuchsia-300/20 bg-fuchsia-400/10 text-fuchsia-200',
-        subtle: 'text-fuchsia-200',
-        line: 'from-fuchsia-400/50 via-fuchsia-300/20 to-transparent',
-        hoverBorder: 'hover:border-fuchsia-300/30',
-      }
-    }
-
-    return {
-      glow: 'rgba(34, 211, 238, 0.18)',
-      border: 'border-cyan-400/20',
-      badge: 'border-cyan-300/20 bg-cyan-400/10 text-cyan-200',
-      subtle: 'text-cyan-200',
-      line: 'from-cyan-400/50 via-cyan-300/20 to-transparent',
-      hoverBorder: 'hover:border-cyan-300/30',
-    }
-  }, [accent])
-
-  const handleMouseMove = (event) => {
-    const rect = event.currentTarget.getBoundingClientRect()
-    const x = ((event.clientX - rect.left) / rect.width) * 100
-    const y = ((event.clientY - rect.top) / rect.height) * 100
-    setMousePosition({ x, y })
-  }
+function TeamCard({ section }) {
+  const accentClasses =
+    section.accent === 'fuchsia'
+      ? {
+          border: 'border-fuchsia-400/20 hover:border-fuchsia-300/30',
+          badge: 'border-fuchsia-300/20 bg-fuchsia-400/10 text-fuchsia-200',
+          dot: 'bg-fuchsia-300',
+          glow: 'from-fuchsia-500/10 via-transparent to-transparent',
+        }
+      : {
+          border: 'border-cyan-400/20 hover:border-cyan-300/30',
+          badge: 'border-cyan-300/20 bg-cyan-400/10 text-cyan-200',
+          dot: 'bg-cyan-300',
+          glow: 'from-cyan-500/10 via-transparent to-transparent',
+        }
 
   return (
     <article
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`group relative overflow-hidden rounded-[2rem] border bg-white/[0.04] p-6 backdrop-blur-xl transition-all duration-500 ${accentClasses.border} ${accentClasses.hoverBorder} hover:-translate-y-1 hover:bg-white/[0.06]`}
+      className={`group relative overflow-hidden rounded-[2rem] border bg-white/[0.04] p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:bg-white/[0.06] ${accentClasses.border}`}
       style={{
-        boxShadow: isHovered
-          ? '0 20px 60px rgba(0, 0, 0, 0.28)'
-          : '0 10px 30px rgba(0, 0, 0, 0.18)',
+        boxShadow: '0 12px 34px rgba(0, 0, 0, 0.22)',
       }}
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{
-          background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, ${accentClasses.glow} 0%, rgba(15, 23, 42, 0.02) 32%, transparent 68%)`,
-        }}
+        className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${accentClasses.glow} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
       />
-
       <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-70" />
 
       <div className="relative z-10">
         <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
+          <div className="max-w-2xl">
             <p className="text-xs uppercase tracking-[0.28em] text-slate-500">
-              {member.rollNo}
+              Contribution Area
             </p>
-            <h3 className="mt-3 text-2xl font-semibold tracking-tight text-white">
-              {member.name}
-            </h3>
-            <p className="mt-2 max-w-xl text-sm leading-6 text-slate-300">
-              {member.role}
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
+              {section.title}
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-slate-300">
+              {section.summary}
             </p>
           </div>
 
-          {member.badge && (
-            <span
-              className={`rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${accentClasses.badge}`}
-            >
-              {member.badge}
-            </span>
-          )}
+          <span
+            className={`rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${accentClasses.badge}`}
+          >
+            Project Role
+          </span>
         </div>
 
         <div className="mt-6 h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
 
         <div className="mt-6">
-          <h4 className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">
-            Key Contributions
-          </h4>
+          <h3 className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">
+            What They Did
+          </h3>
           <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-300">
-            {member.contributions.map((item) => (
+            {section.responsibilities.map((item) => (
               <li key={item} className="flex gap-3">
-                <span
-                  className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-r ${accentClasses.line}`}
-                />
+                <span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${accentClasses.dot}`} />
                 <span>{item}</span>
               </li>
             ))}
@@ -254,11 +153,11 @@ function MemberCard({ member, accent = 'cyan' }) {
         </div>
 
         <div className="mt-6">
-          <h4 className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">
-            Tools and Areas
-          </h4>
+          <h3 className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">
+            Tools and Technologies
+          </h3>
           <div className="mt-4 flex flex-wrap gap-2">
-            {member.stack.map((item) => (
+            {section.tools.map((item) => (
               <span
                 key={item}
                 className="rounded-full border border-white/10 bg-black/20 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors duration-300 group-hover:text-white"
@@ -270,26 +169,6 @@ function MemberCard({ member, accent = 'cyan' }) {
         </div>
       </div>
     </article>
-  )
-}
-
-function SectionHeader({ title, description, count, accent = 'cyan' }) {
-  const badgeClass =
-    accent === 'fuchsia'
-      ? 'border-fuchsia-400/20 bg-fuchsia-400/10 text-fuchsia-200'
-      : 'border-cyan-400/20 bg-cyan-400/10 text-cyan-200'
-
-  return (
-    <div className="flex flex-wrap items-end justify-between gap-4">
-      <div className="max-w-2xl">
-        <h2 className="text-3xl font-semibold tracking-tight text-white">{title}</h2>
-        <p className="mt-3 text-sm leading-7 text-slate-400">{description}</p>
-      </div>
-
-      <div className={`rounded-full border px-4 py-2 text-sm font-medium ${badgeClass}`}>
-        {count}
-      </div>
-    </div>
   )
 }
 
@@ -309,84 +188,54 @@ export default function TeamPage() {
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
           <div className="max-w-4xl">
             <p className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-1 text-sm font-medium text-slate-200">
-              Project Team
+              Project Contributions
             </p>
 
             <h1 className="mt-6 text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl">
-              Meet the team behind the Smart Preventive Healthcare System
+              Frontend and backend work behind the Smart Preventive Healthcare System
             </h1>
 
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
-              A six-member development team worked across backend engineering,
-              machine learning workflow support, frontend design, routing, testing,
-              and final integration to deliver a polished healthcare support platform.
+              This page presents the project by implementation responsibilities instead of individual profiles.
+              It highlights how the frontend and backend teams contributed to the overall development,
+              integration, and presentation of the healthcare support platform.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
-                6 Members
+                2 Core Teams
               </div>
               <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
-                3 Backend
+                Frontend Team
               </div>
               <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
-                3 Frontend
+                Backend Team
               </div>
             </div>
           </div>
         </section>
 
-        <section className="mt-16">
-          <SectionHeader
-            title="Backend Team"
-            description="API development, prediction handling, dataset alignment, model support, and backend workflow stability."
-            count="3 Members"
-            accent="cyan"
-          />
-
-          <div className="mt-8 grid gap-6 lg:grid-cols-3">
-            {backendTeam.map((member, index) => (
-              <div
-                key={member.rollNo}
-                className="animate-[fadeUp_0.7s_ease-out_forwards]"
-                style={{ animationDelay: `${index * 120}ms`, opacity: 0 }}
-              >
-                <MemberCard member={member} accent="cyan" />
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-20">
-          <SectionHeader
-            title="Frontend Team"
-            description="Interface design, component structure, responsive layout, navigation flow, and presentation polish."
-            count="3 Members"
-            accent="fuchsia"
-          />
-
-          <div className="mt-8 grid gap-6 lg:grid-cols-3">
-            {frontendTeam.map((member, index) => (
-              <div
-                key={member.rollNo}
-                className="animate-[fadeUp_0.7s_ease-out_forwards]"
-                style={{ animationDelay: `${index * 120}ms`, opacity: 0 }}
-              >
-                <MemberCard member={member} accent="fuchsia" />
-              </div>
-            ))}
-          </div>
+        <section className="mt-16 grid gap-6 lg:grid-cols-2">
+          {teamSections.map((section, index) => (
+            <div
+              key={section.id}
+              className="animate-[fadeUp_0.7s_ease-out_forwards]"
+              style={{ animationDelay: `${index * 120}ms`, opacity: 0 }}
+            >
+              <TeamCard section={section} />
+            </div>
+          ))}
         </section>
 
         <section className="mt-20 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl md:p-8">
           <div className="max-w-3xl">
             <h2 className="text-3xl font-semibold tracking-tight text-white">
-              Project Development Details
+              Project Development Overview
             </h2>
             <p className="mt-4 leading-7 text-slate-300">
-              The project combined interface design, Flask backend services,
-              machine learning workflow support, dataset preparation, training,
-              testing, and final web integration into one coordinated delivery.
+              The Smart Preventive Healthcare System was developed through coordinated frontend and backend implementation.
+              The frontend shaped the user experience and interface structure, while the backend supported symptom handling,
+              prediction workflow integration, and response generation.
             </p>
           </div>
 
@@ -413,13 +262,12 @@ export default function TeamPage() {
 
         <section className="mt-20 rounded-[2rem] border border-white/10 bg-gradient-to-br from-emerald-400/10 via-white/[0.03] to-cyan-400/10 p-6 backdrop-blur-xl md:p-8">
           <h2 className="text-3xl font-semibold tracking-tight text-white">
-            Contribution Balance
+            Overall Contribution Summary
           </h2>
           <p className="mt-4 max-w-4xl leading-8 text-slate-200">
-            Work was distributed across backend architecture, data handling, training
-            support, model behavior review, interface design, navigation, styling,
-            testing, and final presentation. The result is a balanced six-member
-            collaboration shaped through shared review, debugging, and integration.
+            The frontend team contributed to layout design, responsiveness, routing, and presentation quality,
+            while the backend team contributed to logic flow, API communication, symptom processing,
+            prediction support, and integration stability across the system.
           </p>
         </section>
       </main>

@@ -40,9 +40,23 @@ export default function Login() {
 
     try {
       const data = await loginUser(formData);
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-      setSuccess(data.message || "Login successful");
+
+      const token = data?.token || "";
+      const user = data?.user || {};
+      const username =
+        user?.username ||
+        user?.name ||
+        data?.username ||
+        data?.name ||
+        formData.email.split("@")[0];
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("username", username);
+
+      setSuccess(data?.message || "Login successful");
+
+      window.dispatchEvent(new Event("authChanged"));
 
       setTimeout(() => {
         navigate(from, { replace: true });
@@ -147,6 +161,7 @@ const styles = {
     fontSize: "15px",
     fontWeight: "600",
     cursor: "pointer",
+    opacity: 1,
   },
   success: {
     marginTop: "16px",
